@@ -9,11 +9,11 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
-import java.util.List;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,8 +49,10 @@ public class BookController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create a new book (only for admin)")
-    @ApiResponse(responseCode = "201", description = "Book created successfully", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = BookDto.class))})
+    @ApiResponse(responseCode = "201",
+            description = "Book created successfully",
+            content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = BookDto.class))})
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.save(requestDto);
     }
@@ -73,8 +75,10 @@ public class BookController {
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Operation(summary = "Update a book by id (only for admin)")
-    @ApiResponse(responseCode = "200", description = "Book updated successfully", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = BookDto.class))})
+    @ApiResponse(responseCode = "200",
+            description = "Book updated successfully",
+            content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = BookDto.class))})
     public BookDto updateBook(@PathVariable Long id,
                               @RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.update(id, requestDto);
