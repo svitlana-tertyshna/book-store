@@ -8,11 +8,11 @@ import com.bookstore.model.Role;
 import com.bookstore.model.RoleName;
 import com.bookstore.model.User;
 import com.bookstore.repository.user.UserRepository;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
