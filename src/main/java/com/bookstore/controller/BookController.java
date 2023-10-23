@@ -61,7 +61,8 @@ public class BookController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Deleted book by id (only for admin)")
-    @ApiResponse(responseCode = "204", description = "Book deleted successfully")
+    @ApiResponse(responseCode = "204",
+            description = "Book deleted successfully")
     public void delete(@PathVariable Long id) {
         bookService.deleteById(id);
     }
