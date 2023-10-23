@@ -1,5 +1,6 @@
 package com.bookstore.service;
 
+import com.bookstore.exception.EntityNotFoundException;
 import com.bookstore.model.Role;
 import com.bookstore.model.RoleName;
 import com.bookstore.repository.user.RoleRepository;
@@ -14,6 +15,6 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role getRoleByRoleName(RoleName roleName) {
         return roleRepository.findRoleByRoleName(roleName).orElseThrow(() ->
-                new RuntimeException("can't find role by roleName: " + roleName));
+                new EntityNotFoundException("Can't find role by roleName: " + roleName));
     }
 }
