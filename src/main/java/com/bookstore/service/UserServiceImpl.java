@@ -8,7 +8,6 @@ import com.bookstore.model.Role;
 import com.bookstore.model.RoleName;
 import com.bookstore.model.User;
 import com.bookstore.repository.user.UserRepository;
-import java.util.HashSet;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,7 +31,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.toModel(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         Role userRole = roleService.getRoleByRoleName(RoleName.ROLE_USER);
-        user.setRoles(new HashSet<>(Set.of(userRole)));
+        user.setRoles(Set.of(userRole));
         return userMapper.toDto(userRepository.save(user));
     }
 }
