@@ -1,6 +1,6 @@
 package com.bookstore.repository.book;
 
-import com.bookstore.dto.BookSearchParametersDto;
+import com.bookstore.dto.book.BookSearchParametersDto;
 import com.bookstore.model.Book;
 import com.bookstore.repository.SpecificationBuilder;
 import com.bookstore.repository.SpecificationProviderManager;
@@ -20,7 +20,8 @@ public class BookSpecificationBuilder implements SpecificationBuilder<Book> {
         Specification<Book> specification = Specification.where(null);
         if (bookSearchParameters.author() != null && bookSearchParameters.author().length > 0) {
             specification = specification.and(bookSpecificationProviderManager
-                    .getSpecificationProvider(AUTHOR).getSpecification(bookSearchParameters.author()));
+                    .getSpecificationProvider(AUTHOR)
+                    .getSpecification(bookSearchParameters.author()));
         }
         return specification;
     }

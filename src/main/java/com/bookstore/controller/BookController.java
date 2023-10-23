@@ -1,20 +1,21 @@
 package com.bookstore.controller;
 
-import com.bookstore.dto.BookDto;
-import com.bookstore.dto.BookSearchParametersDto;
-import com.bookstore.dto.CreateBookRequestDto;
+import com.bookstore.dto.book.BookDto;
+import com.bookstore.dto.book.BookSearchParametersDto;
+import com.bookstore.dto.book.CreateBookRequestDto;
 import com.bookstore.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
-import java.util.List;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,17 +46,21 @@ public class BookController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Create a new book")
-    @ApiResponse(responseCode = "201", description = "Book created successfully", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = BookDto.class))})
+    @Operation(summary = "Create a new book (only for admin)")
+    @ApiResponse(responseCode = "201",
+            description = "Book created successfully",
+            content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = BookDto.class))})
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.save(requestDto);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(summary = "Deleted book by id")
+    @Operation(summary = "Deleted book by id (only for admin)")
     @ApiResponse(responseCode = "204", description = "Book deleted successfully")
     public void delete(@PathVariable Long id) {
         bookService.deleteById(id);
@@ -68,9 +73,12 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update a book by id")
-    @ApiResponse(responseCode = "200", description = "Book updated successfully", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = BookDto.class))})
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @Operation(summary = "Update a book by id (only for admin)")
+    @ApiResponse(responseCode = "200",
+            description = "Book updated successfully",
+            content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = BookDto.class))})
     public BookDto updateBook(@PathVariable Long id,
                               @RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.update(id, requestDto);
