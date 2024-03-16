@@ -1,9 +1,10 @@
-package com.bookstore.service;
+package com.bookstore.service.impl;
 
 import com.bookstore.exception.EntityNotFoundException;
 import com.bookstore.model.Role;
 import com.bookstore.model.RoleName;
 import com.bookstore.repository.user.RoleRepository;
+import com.bookstore.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
