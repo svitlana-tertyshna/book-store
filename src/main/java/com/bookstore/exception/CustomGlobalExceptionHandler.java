@@ -55,7 +55,8 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     }
 
     @ExceptionHandler(ShoppingCartUpdateException.class)
-    protected ResponseEntity<Object> handleShoppingCartUpdateException(ShoppingCartUpdateException ex) {
+    protected ResponseEntity<Object> handleShoppingCartUpdateException(
+            ShoppingCartUpdateException ex) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.NOT_FOUND);

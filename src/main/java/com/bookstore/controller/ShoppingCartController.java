@@ -35,7 +35,7 @@ public class ShoppingCartController {
     @Operation(summary = "Get all info about the cart", description = "Get all info about the cart")
     @ApiResponse(responseCode = "200", description = "Cart information",
             content = {@Content(mediaType = "application/json")})
-    public ShoppingCartDto getShoppingCart(Authentication authentication){
+    public ShoppingCartDto getShoppingCart(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return shoppingCartService.getUserShoppingCart(user);
     }
@@ -43,7 +43,8 @@ public class ShoppingCartController {
     @PostMapping
     @Operation(summary = "Add cart item to the cart",
             description = "Add needed book and its quantity")
-    public CartItemDto addBookToCart(@RequestBody @Valid AddCartItemRequestDto requestDto, Authentication authentication) {
+    public CartItemDto addBookToCart(@RequestBody @Valid AddCartItemRequestDto requestDto,
+                                     Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return shoppingCartService.addBookToShoppingCart(user, requestDto);
     }
@@ -53,9 +54,10 @@ public class ShoppingCartController {
             description = "Change the number of a book")
     @ApiResponse(responseCode = "200", description = "Updated",
             content = {@Content(mediaType = "application/json")})
-    public CartItemDto updateQuantityInCart(@PathVariable Long cartItemId,
-                                            @RequestBody @Valid UpdateQuantityCartItemDto requestDto,
-                                            Authentication authentication) {
+    public CartItemDto updateQuantityInCart(
+            @PathVariable Long cartItemId,
+            @RequestBody @Valid UpdateQuantityCartItemDto requestDto,
+            Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return shoppingCartService.updateCartItemQuantity(cartItemId, requestDto, user);
     }

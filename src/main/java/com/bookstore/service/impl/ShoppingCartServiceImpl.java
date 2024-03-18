@@ -1,9 +1,9 @@
 package com.bookstore.service.impl;
 
-import com.bookstore.dto.shoppingcart.ShoppingCartDto;
 import com.bookstore.dto.cartitem.AddCartItemRequestDto;
 import com.bookstore.dto.cartitem.CartItemDto;
 import com.bookstore.dto.cartitem.UpdateQuantityCartItemDto;
+import com.bookstore.dto.shoppingcart.ShoppingCartDto;
 import com.bookstore.exception.EntityNotFoundException;
 import com.bookstore.exception.ShoppingCartUpdateException;
 import com.bookstore.mapper.CartItemMapper;
@@ -88,7 +88,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                                 Long bookId) {
         List<CartItem> cartItems = shoppingCart.getCartItems();
         for (CartItem cartItem : cartItems) {
-            if(cartItem.getBook().getId().equals(bookId)) {
+            if (cartItem.getBook().getId().equals(bookId)) {
                 throw new ShoppingCartUpdateException("You already have this book in your cart "
                         + cartItem.getBook().getTitle());
             }
@@ -97,7 +97,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     private void isUserHaveCartItem(ShoppingCart shoppingCart, CartItem cartItem) {
         if (!cartItem.getShoppingCart().getId().equals(shoppingCart.getId())) {
-            throw new ShoppingCartUpdateException("This user don't have in shopping cart cart item with id = "
+            throw new ShoppingCartUpdateException(
+                    "This user don't have in shopping cart cart item with id = "
                     + cartItem.getId());
         }
     }
