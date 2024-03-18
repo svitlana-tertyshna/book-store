@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-books-data
+      author: svitlana-tertyshna
+      changes:
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: 'The Hobbit' }
+              - column: { name: author, value: 'J.R.R. Tolkien' }
+              - column: { name: isbn, value: '978-0547928227' }
+              - column: { name: price, value: '18.99' }
+              - column: { name: description, value: 'A fantasy adventure novel.' }
+              - column: { name: cover_image, value: 'hobbit.jpg' }
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: 'The Great Gatsby' }
+              - column: { name: author, value: 'F. Scott Fitzgerald' }
+              - column: { name: isbn, value: '978-0743273565' }
+              - column: { name: price, value: '12.99' }
+              - column: { name: description, value: 'A classic novel about the American Dream.' }
+              - column: { name: cover_image, value: 'gatsby.jpg' }

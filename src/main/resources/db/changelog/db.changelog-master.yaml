@@ -13,3 +13,19 @@ databaseChangeLog:
       file: /db/changelog/changes/06-create-categories-table.yaml
   - include:
       file: /db/changelog/changes/07-create-books-categories-table.yaml
+  - include:
+      file: /db/changelog/changes/08-create-shopping-carts-table.yaml
+  - include:
+      file: /db/changelog/changes/09-create-cart-items-table.yaml
+  - include:
+      file: /db/changelog/changes/10-add-users-data.yaml
+  - include:
+      file: /db/changelog/changes/11-add-data-users-roles.yaml
+  - include:
+      file: /db/changelog/changes/12-add-categories-data.yaml
+  - include:
+      file: /db/changelog/changes/13-add-books-data.yaml
+  - include:
+      file: /db/changelog/changes/14-add-book-category-data.yaml
+  - include:
+      file: /db/changelog/changes/15-add-carts-data.yaml
