@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-carts-data
+      author: svitlana-tertyshna
+      changes:
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column: { name: user_id, value: '7' }
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column: { name: user_id, value: '8' }

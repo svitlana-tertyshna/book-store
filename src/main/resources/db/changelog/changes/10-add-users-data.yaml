@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-users-data
+      author: svitlana-tertyshna
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: email, value: 'user@i.com' }
+              - column: { name: password, value: '$2a$12$NTuql8mQqfcLIrCrEUxxMOfrh4p/AQPeSfzePp0RTxeer0mnC5BoG' }
+              - column: { name: first_name, value: 'User' }
+              - column: { name: last_name, value: 'Test' }
+              - column: { name: shipping_address, value: '123 Main St' }
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: email, value: 'admin@i.com' }
+              - column: { name: password, value: '$2a$12$Gdd7IgrfnpBHm90/YjWFf.ZlZFA/ClEizyxGCAzc94iWnpsOS04X2' }
+              - column: { name: first_name, value: 'Admin' }
+              - column: { name: last_name, value: 'Test' }
